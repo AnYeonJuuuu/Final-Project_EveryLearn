@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lectureMapper">
+  
+  <!-- 강의 등록 -->
+  <insert id="insertClassOne">
+	INSERT INTO CLASS
+		(
+		    NO
+		    , TEACHER_NO
+		    , CATEGORY
+		    , CLASS_NAME
+		    , CLASS_CONTENT
+		    , PRICE
+		    , ENROLL_DATE
+		    , RECOMM
+		    , STUDENT_CNT
+		    , CLASS_CNT
+		    , THUMB
+		    , LOGO
+		)
+	VALUES
+		(
+		    SEQ_CLASS_NO.NEXTVAL
+		    , #{teacherNo}
+		    , #{category}
+		    , #{className}
+		    , #{classContent}
+		    , #{price}
+		    , SYSDATE
+		    , 0
+		    , 0
+		    , 0
+		    , #{thumb}
+		    , #{logo}
+		)
+		
+	
+	
+  </insert>
+  
+  <!-- 함수 등록 -->
+  <!-- <create>
+	  CREATE FUNCTION get_seq RETURN NUMBER IS
+	BEGIN
+	  RETURN SEQ_DETAIL_CLASS_NO.nextval;
+	END;
+	</create> -->
+	
+  <!-- 강의 목차 등록 -->
+	<insert id="insertClassDetail">
+		INSERT ALL
+		<foreach collection="list" item="vo" >
+
+		INTO DETAIL_CLASS
+			(
+			NO
+			, DETAIL_NO
+			, CLASS_NO
+			, CHAPTER
+			)
+		VALUES ( get_seq, #{vo.detailno}, #{vo.classNo}, #{vo.chapter})
+		
+		</foreach>
+		select 1 from dual
+		
+	</insert>
+	
+	<!-- 강의 메인 리스트 조회 -->
+	<!-- 게시판 목록 -->
+    <select id="getList" resultType="com.coding5.el.lecture.vo.LectureVo">
+    
+        SELECT 
+        	C.NO
+			,MEM.NICK as TEACHER_NO
+			,C.CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT
+			,C.LOGO
+			,C.THUMB
+		
+        FROM CLASS C
+       
+        
+        join TEACHER TEA
+        ON C.TEACHER_NO = TEA.NO
+        
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+         WHERE C.DELETE_YN = 'N'
+        
+        order by C.NO desc
+    
+    </select>
+	
+	<!-- 강의 메인 - 카테고리 드로잉 -->
+	<select id="getListDrawing" resultType="com.coding5.el.lecture.vo.LectureVo">
+    
+        SELECT 
+        	C.NO
+			,MEM.NICK as TEACHER_NO
+			,C.CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT
+			,C.LOGO
+			,C.THUMB
+		
+        FROM CLASS C
+       
+        
+        join TEACHER TEA
+        ON C.TEACHER_NO = TEA.NO
+        
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+         WHERE C.DELETE_YN = 'N'
+        and C.CATEGORY = '1'
+        order by C.NO desc
+        
+        
+        
+        
+    
+    </select>
+    <!-- 강의 메인 - 요리 / 베이킹 -->
+    <select id="getListCook" resultType="com.coding5.el.lecture.vo.LectureVo">
+    
+        SELECT 
+        	C.NO
+			,MEM.NICK as TEACHER_NO
+			,C.CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT
+			,C.LOGO
+			,C.THUMB
+		
+        FROM CLASS C
+       
+        
+        join TEACHER TEA
+        ON C.TEACHER_NO = TEA.NO
+        
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+         WHERE C.DELETE_YN = 'N'
+        AND C.CATEGORY = '2'
+        
+        order by C.NO desc
+        
+        
+    
+    </select>
+    
+    <!-- 강의 메인 - 카테고리 운동 -->
+     <select id="getListWorkout" resultType="com.coding5.el.lecture.vo.LectureVo">
+    
+        SELECT 
+        	C.NO
+			,MEM.NICK as TEACHER_NO
+			,C.CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT
+			,C.LOGO
+			,C.THUMB
+		
+        FROM CLASS C
+       
+        
+        join TEACHER TEA
+        ON C.TEACHER_NO = TEA.NO
+        
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+         WHERE C.DELETE_YN = 'N'
+        AND C.CATEGORY = '3'
+        
+        order by C.NO desc
+        
+    
+    </select>
+    
+    <!-- 강의 메인 - 카테고리 음악 -->
+     <select id="getListMusic" resultType="com.coding5.el.lecture.vo.LectureVo">
+    
+        SELECT 
+        	C.NO
+			,MEM.NICK as TEACHER_NO
+			,C.CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT
+			,C.LOGO
+			,C.THUMB
+		
+        FROM CLASS C
+       
+        
+        join TEACHER TEA
+        ON C.TEACHER_NO = TEA.NO
+        
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+         WHERE C.DELETE_YN = 'N'
+        AND C.CATEGORY = '4'
+        
+        order by C.NO desc
+        
+        
+    
+    </select>
+    
+    <!-- 강의 메인 - 카테고리 it -->
+     <select id="getListItTech" resultType="com.coding5.el.lecture.vo.LectureVo">
+    
+       SELECT 
+        	C.NO
+			,MEM.NICK as TEACHER_NO
+			,C.CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT
+			,C.LOGO
+			,C.THUMB
+		
+        FROM CLASS C
+       
+        
+        join TEACHER TEA
+        ON C.TEACHER_NO = TEA.NO
+        
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+         WHERE C.DELETE_YN = 'N'
+        AND C.CATEGORY = '5'
+        
+        order by C.NO desc
+        
+        
+    
+    </select>
+    
+    <!-- 강의 메인 - 카테고리 언어 -->
+     <select id="getListLanguage" resultType="com.coding5.el.lecture.vo.LectureVo">
+    
+        SELECT 
+        	C.NO
+			,MEM.NICK as TEACHER_NO
+			,C.CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT
+			,C.LOGO
+			,C.THUMB
+		
+        FROM CLASS C
+       
+        
+        join TEACHER TEA
+        ON C.TEACHER_NO = TEA.NO
+        
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+         WHERE C.DELETE_YN = 'N'
+        AND C.CATEGORY = '6'
+        
+        order by C.NO desc
+        
+    
+    </select>
+    
+    <!-- 강의 메인 - 카테고리 금융 -->
+     <select id="getListFinance" resultType="com.coding5.el.lecture.vo.LectureVo">
+    
+        SELECT 
+        	C.NO
+			,MEM.NICK as TEACHER_NO
+			,C.CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT
+			,C.LOGO
+			,C.THUMB
+		
+        FROM CLASS C
+       
+        
+        join TEACHER TEA
+        ON C.TEACHER_NO = TEA.NO
+        
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+         WHERE C.DELETE_YN = 'N'
+        AND C.CATEGORY = '7'
+        
+        order by C.NO desc
+    
+    </select>
+    
+    
+    <!-- 강의 검색 -->
+    <select id="getSearch" resultType="com.coding5.el.lecture.vo.LectureVo">
+    	SELECT 	
+    		C.NO
+			,MEM.NICK as TEACHER_NO
+			,C.CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT 
+			,C.LOGO
+			,C.THUMB
+       FROM CLASS C
+        
+        join TEACHER TEA
+        ON C.TEACHER_NO = TEA.NO
+        
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+      
+        <if test="keyword != null and keyword != ''">
+			WHERE CLASS_NAME LIKE  '%${keyword}%'
+		</if> 
+		
+
+    </select>
+    
+    <!-- 강의 조회시 조회수 증가 -->
+	<update id="increaseCount">
+	     update 
+	     	CLASS
+         set 
+         	RECOMM = RECOMM + 1
+         where 
+           NO = #{bno}
+	</update>
+	
+	<!-- 강의 상세조회 -->
+	<select id="classDetail" resultType="com.coding5.el.lecture.vo.LectureVo">
+  SELECT
+            C.NO
+			, MEM.NICK AS TEACHER_NO
+			,CATE.NAME as CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT
+			,C.LOGO
+			,C.THUMB
+			, (SELECT count(*) FROM REVIEW_LEC REV WHERE REV.CLASS_NO = C.NO ) as REVIEW_CNT 
+			, (Select TRUNC(avg(rev.score), 2) from review_lec rev where rev.class_no = c.no) as REV_AVG
+        FROM CLASS C
+        JOIN CLASS_CATE CATE
+        ON C.CATEGORY = CATE.NO
+        
+        JOIN TEACHER TEA
+        ON C.TEACHER_NO = TEA.MEMBER_NO
+        
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+        
+
+        
+        WHERE C.NO = #{bno}
+        
+	</select>
+	
+	<select id="selectLectureConut" resultType="int">
+		SELECT COUNT(*)
+		FROM CLASS
+		WHERE DELETE_YN = 'N'
+	</select>
+
+	<select id="selectReview" resultType="com.coding5.el.lecture.vo.ReviewVo">
+	    	SELECT 	
+	    		RE.NO
+				, MEM.NICK AS WRITER
+				, RE.SCORE
+				, RE.CONTENT
+				, RE.DELETE_YN
+				, RE.ENROLL_DATE
+				, RE.MODIFY_YN
+				, RE.CLASS_NO
+	        FROM REVIEW_LEC RE
+	        
+	        
+	        JOIN MEMBER MEM
+        	ON MEM.NO = RE.WRITER
+        	
+        	WHERE RE.CLASS_NO = #{bno}
+        	and RE.DELETE_YN = 'N'
+        	order by re.enroll_date desc
+	        
+	        
+	    </select>
+	
+	<select id="selectReviewCount" resultType="int">
+		SELECT COUNT(*)
+		FROM REVIEW_LEC
+		WHERE DELETE_YN = 'N'
+		AND CLASS_NO = #{bno}
+	</select>
+	
+	<insert id="insertReview">
+		insert into review_lec
+		(
+		    NO
+			, WRITER
+			, SCORE
+			, CONTENT
+			, ENROLL_DATE
+			, CLASS_NO
+		)
+		values
+		(
+		    SEQ_REVIEW_LEC_NO.NEXTVAL
+		    , #{writer}
+		    , #{score}
+		    , #{content}
+		    , SYSDATE
+		    , #{bno}
+		)
+
+	</insert>
+
+
+	<!-- 리뷰 삭제 -->
+	<update id="deleteReview">
+		update review_lec
+		set 
+         	DELETE_YN = 'Y'
+		where no = #{reviewNo}
+	</update>
+	
+	<!-- 리뷰 수정 -->
+	<update id = "editReview">
+		update review_lec
+		set
+			score = #{score}
+			, content = #{content}
+			, ENROLL_DATE = SYSDATE
+		where no = #{rno}
+	</update>
+	
+	<select id="selectBno" resultType="int">
+		SELECT SEQ_CLASS_NO.CURRVAL FROM DUAL
+	</select>
+	
+	<!-- 리뷰 작성했는지 확인하기 -->
+	<select id="checkReview" resultType = "int">
+		select count(*) from REVIEW_LEC
+    	where WRITER = #{mno}
+    	and CLASS_NO = #{bno1}
+    	and DELETE_YN = 'N'
+	</select>
+	
+  
+</mapper>

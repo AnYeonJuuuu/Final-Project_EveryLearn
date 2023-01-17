@@ -1,0 +1,175 @@
+@charset "UTF-8";
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
+body{
+  font-family: 'nanumsquare';
+
+}
+
+
+.wrap{
+    width: 70vw;
+    height: 1500px;
+    --border: 1px solid black;
+    display: grid;
+    grid-template-columns: 15fr 85fr;
+    margin: auto;
+}
+
+.lecture-main{
+    margin-top: 50px;
+}
+
+.sidebar{
+    width: 180px;
+    height: 500px;
+    --border: 1px solid red;
+    background-color: #F4F4F4;
+    font-size: 20px;
+    
+}
+
+li{
+    list-style: none;
+    padding-left: 0px;
+    padding-top: 10px;
+}
+
+li a {
+     list-style: none;
+     text-decoration: none; 
+     display: block;  
+     padding: 10px 0px 10px 0px;  
+     --border-bottom: 1px solid gray ;
+     color: black; 
+    }
+
+.sidebar li a:hover
+    {
+    color:#1187CF;
+    font-weight: 700;
+    }
+
+.search{
+    width: 30%;
+    height: 30px;
+    --border: 1px solid gray;
+    
+    margin-left: auto;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+#searchbox{
+    --width: 85%;
+    --margin-top: 5px;
+    
+}
+
+#searchbox >input{
+    border-bottom: 1px solid lightgray;
+}
+
+
+#search-inputbox{
+    border: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid lightgray;
+    position: absolute;
+    
+}
+
+/*hover*/
+.btn_submit{
+    background-color: white;
+    color: #1187CF;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 250px;
+
+}
+/* hover 효과 넣고싶은데ㅠㅠㅠ
+.btn_submit :hover{
+    background-color: #1187CF;
+    color: white;
+    
+}
+
+*/
+
+.list-wrap{
+    --border: 1px solid green;
+    border-top: 1px solid gray;
+    height: 90%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 3fr 3fr 3fr 3fr 1fr;
+    padding: 30px;
+    grid-gap: 30px;
+}
+
+.list-wrap>div{
+    padding: 20px;
+}
+
+#lec-pic{
+    height: 60%;
+    background-color: aliceblue;
+    
+}
+
+#lec-int{
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+#lec-int a{
+    text-decoration: none;
+    color: black; 
+}
+
+#lec-int a:hover{
+    font-weight: 600;
+    color: #1187CF;
+}
+
+#lec-teacher{
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+#lec-teacher a{
+	text-decoration: none;
+}
+
+/*css 코드 수정 */
+/* 강사 css 추가 (연주) */
+#teacher-detail:link { text-decoration: none !important;}
+#teacher-detail:visited {  text-decoration: none !important;}
+#teacher-detail:hover { text-decoration: none !important;}
+#teacher-detail{
+    text-decoration: none;
+    color: #5a5a5a !important; 
+    font-size: 15px !important;
+}
+
+
+/*페이징*/
+#page-area{
+    grid-column: span 6;
+    text-align: center;
+    margin-top: 30px;
+    border-bottom: none;
+    display: flex;
+    flex-direction : column;
+    align-items: center;
+}
+
+#page-area2>a{
+    text-decoration: none;
+    color: #5a5a5a; 
+    font-size: 18px;
+}

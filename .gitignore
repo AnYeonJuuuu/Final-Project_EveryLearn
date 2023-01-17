@@ -1,0 +1,10 @@
+workspace/Servers/
+.settings/
+workspace/.metadata/
+.metadata/
+Servers/
+.classpath/
+**/target/
+workspace/everyLearnPrj/.settings/org.eclipse.wst.common.component
+workspace/everyLearnPrj/bin/
+*.classpath

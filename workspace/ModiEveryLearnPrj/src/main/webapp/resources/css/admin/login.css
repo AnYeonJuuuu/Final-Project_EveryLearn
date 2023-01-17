@@ -1,0 +1,119 @@
+body{
+    --background-color: #E8E8E8;
+}
+.container{
+    position: relative;
+}
+
+.main{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 15%);
+}
+
+.login-wrap{
+    width: 320px;
+    margin: 0 auto;
+}
+
+.input-area{
+    margin-bottom: 10px; 
+}
+.input-area>input{
+    width: 100%;
+    height: 46px;
+    padding: 0px 11px 1px 15px;
+    border-radius: 4px;
+    border: 1px solid darkgray;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgb(51, 51, 51);
+    outline: none;
+    box-sizing: border-box;
+    height: 54px;
+    font-size: 14px;
+}
+
+#find-area{
+    display: flex;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    font-size: 13px;
+
+}
+
+#find-area>a{
+    color: black;
+}
+
+#find-area>span{
+    padding: 0px 5px;
+}
+
+.btn{
+    margin: 10px 0px;
+}
+
+.btn>input{
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    height: 54px;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: #1187CF;
+    border: 0px none;
+    font-size: 18px;
+}
+
+.btn>button{
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    height: 54px;
+    border-radius: 3px;
+    color:  #3A1D1D;
+    background-color: #F7E600;
+    border: 0px none;
+}
+
+
+.swal2-styled {
+    border: 0;
+    border-radius: 0.25em;
+    background: initial;
+    background-color: #005297 !important;
+    color: #fff;
+    font-size: 1em;
+}
+
+.swal2-title {
+    font-size: 1.5em !important;
+}
+
+.flex-wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.save-wrap{
+    display: flex;
+    
+    justify-content: flex-start;
+    align-items: center;
+    
+    font-size: 13px;
+}
+
+.save-wrap>label{
+    margin: 0px 0 0 2px;
+}

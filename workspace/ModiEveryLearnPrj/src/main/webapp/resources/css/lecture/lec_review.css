@@ -1,0 +1,319 @@
+@charset "UTF-8";
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
+body{
+  font-family: 'nanumsquare';
+
+}
+
+*{
+    box-sizing: border-box;
+  }
+
+.wrap{
+    width: 70vw;
+    height: 2000px;
+    --border: 1px solid black;
+    display: grid;
+    grid-template-rows: 3fr 0.5fr 12fr;
+    margin: auto;
+}
+
+.lec-intro{
+    --border: 1px solid red;
+    background-color: #d7d7d7;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.navi{
+    border-bottom: 1px solid gray;
+    display: grid;
+    grid-template-columns: 1fr 1fr 10fr;
+    --margin-left: 10px;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.navi>div a{
+    text-decoration: none;
+    color: black; 
+}
+
+.navi>div a:hover{
+    color: #1187CF;
+}
+
+.lec-main{
+    --border: 1px solid blue;
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+}
+
+#lec-pic{
+    padding: 70px;
+}
+
+#lec-cate{
+    margin-top: 25px;
+    color: #5a5a5a;
+}
+#lec-int{
+    margin-top: 20px;
+    padding: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#lec-int>div{
+    margin: 10px;
+    margin-top: 20px;
+}
+
+#lec-name{
+    font-size: 23px;
+    font-weight: 800;
+    margin: 15px 0px 15px 0px;
+}
+
+#lec-content{
+    --border: 1px solid coral;
+    padding: 40px;
+    
+}
+
+#sunglasses{
+    margin-top: 100px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#pay-wrap{
+    border: 1px solid gray;
+    height: 300px;
+    margin: 30px;
+    margin-right: 80px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    padding: 30px;
+    border-radius: 5px;
+}
+
+#pay-price{
+    font-size: 30px;
+    font-weight: bold; 
+}
+
+#pay-zzim{
+    --border: 1px solid #5a5a5a;
+    height: 60px;
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+
+
+#pay-zzim>a>img{
+    height: 50px ;
+    width: 50px ;
+    object-fit: cover;
+}
+
+
+
+
+form{
+    display: grid;
+    grid-column: span 2;
+}
+
+#pay-cart{
+    background-color: #1187CF;
+    color: white;
+    text-decoration: none;
+    display: grid;
+    grid-column: span 2;
+    font-size: 20px;
+    align-items : center;
+    width: 100%;
+    height: 50px;
+}
+
+
+#pay-real{
+    margin-top: 15px;
+    grid-column: span 2;
+    border: 1px solid #5a5a5a;
+    font-size: 20px;
+    display : flex;
+    justify-content : center;
+    align-items : center;
+}
+
+#profile-pic{
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+a{
+	text-decoration : none;
+}
+
+
+#lec-review>div{
+    margin: 10px;
+}
+
+#review-top{
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#write-wrap{
+	border: 1px solid gray;
+    width: 70%;
+    height: 250px;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 5px;
+}
+
+#write-input{
+    height: 170px;
+    width: 90%;
+    margin-left: 25px;
+    border: 1px solid #dadada;
+}
+
+#write-submit{
+    background-color: #1187CF;
+    color: white;
+    margin-right: 30px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 50px;
+    
+}
+
+#write-star{
+    margin-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#written-review{
+    display: grid;
+    grid-template-columns: 2fr 4fr 3fr;
+    grid-template-rows: 0.8fr 0.8fr 4fr;
+    border: 1px solid gray;
+    width: 70%;
+    height: 250px;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 5px;
+
+}
+
+/*별점*/
+
+#myform{
+    display: inline-block;
+    direction: rtl;
+    border:0;
+}
+#myform legend{
+    text-align: right;
+}
+#myform input[type=radio]{
+    display: none;
+}
+#myform label{
+    font-size: 1.5em;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+}
+#myform label:hover{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform label:hover ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+span{
+font-size: 25px;
+float: left;
+margin-right: 15px;
+margin-top: 3px;
+}
+
+  /*별점 끝*/
+
+#profile-pic{
+    --border: 1px solid skyblue;
+    grid-row: span 2;
+}
+
+#stars{
+    margin: 5px;
+    color: gold;
+    --border: 1px solid violet;
+}
+
+#written-nick{
+    grid-column: span 2;
+    margin: 5px;
+}
+
+#enroll-date{
+    color: #5a5a5a;
+    --grid-column: span 2;
+    text-align: center;
+    margin-top: 25px;
+}
+
+#review-content{
+    --border-top: 1px solid #d7d7d7;
+    grid-column: span 3;
+    padding: 40px;
+    padding-left: 50px ;
+    font-weight: bold;
+}
+
+/*페이징*/
+#page-area{
+    grid-column: span 6;
+    text-align: center;
+    margin-top: 30px;
+    border-bottom: none;
+    display: flex;
+    flex-direction : column;
+    align-items: center;
+}
+
+#page-area2>a{
+    text-decoration: none;
+    color: #5a5a5a; 
+    font-size: 18px;
+}
+
+/*css 코드 수정 */
+/* 강사 css 추가 (연주) */
+#teacher-detail:link { text-decoration: none !important;}
+#teacher-detail:visited {  text-decoration: none !important;}
+#teacher-detail:hover { text-decoration: none !important;}
+#teacher-detail{
+    text-decoration: none;
+    color: #5a5a5a !important; 
+    font-size: 15px !important;
+}

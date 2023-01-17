@@ -1,0 +1,224 @@
+/* #container{
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+} */
+#header{
+  border-bottom: 1px solid rgb(173, 172, 172);
+}
+
+.container-wrapper{
+  border-bottom: 1px solid #f1f3f5; 
+}
+
+#container-top{
+  display: flex;
+  width: 1200px;
+  height: 40px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  font-size: 14px;
+}
+
+
+/* 반응형 */
+/* @media(max-width: 1200px){
+  #container-top{
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    border-bottom: 1px solid #f1f3f5; 
+  }
+} */
+
+header .page{
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  padding: 0 32px;
+}
+
+header .choose-tap ::after{
+  content: "|";
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+header .teacher{
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+header a{
+  text-decoration: none;
+  color: black;
+}
+
+ul{
+  list-style: none;
+}
+
+header .logoTop{
+  text-align: center;
+}
+
+img{
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}
+
+#nav-container{
+  display: flex;
+  height: 50px;
+  width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+  padding-bottom: 10px;
+  justify-content: space-between;
+}
+
+header .nav-list{
+  display: flex;
+  width: 350px;
+  justify-content: space-around;
+  padding: 0;
+}
+
+header .menu-list{
+  padding: 8px 16px;
+}
+
+header .search-wrapper{
+  width: 300px;
+  position: absolute;
+  left: calc(50% - 150px);
+}
+
+header .search{
+  display: flex;
+  justify-content: center;
+  width: 300px;
+}
+
+header .click-search{
+  width: 250px;
+}
+
+header .member{
+  display: flex;
+  justify-content: space-around;
+  width: 250px;
+
+}
+
+header .login{
+  width: 65px;
+  height: 25px;
+  text-align: center;
+  vertical-align: middle;
+  border: 2px solid #1187CF;
+  border-radius: 5px;
+  line-height: 25px;
+}
+
+header .join{
+  width: 70px;
+  height: 25px;
+  text-align: center;
+  vertical-align: bottom;
+  border: 2px solid #1187CF;
+  background-color: #1187CF;
+  color: white;
+  border-radius: 5px;
+  line-height: 25px;
+}
+
+/*  */
+
+#member-stu{
+  margin-top: 3px;
+  width: 25px;
+  height: 22px;
+}
+
+#member-tea{
+  margin-right: 2px;
+  width: 25px;
+  height: 24px;
+}
+
+#memberimg{
+  width: 30px;
+  height: 32px;
+}
+
+#cartimg{
+  width: 30px;
+  height: 30px;
+}
+
+#memName{
+  padding-top: 5px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+#mem-wrap{
+  padding-top: 2px;
+}
+
+
+/*  */
+
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+.dropdown{
+  position : relative;
+  display : inline-block;
+}
+
+.dropbtn_icon{
+  font-family : 'Material Icons';
+}
+.drop{
+  font-weight: 400;
+  color : rgb(37, 37, 37);
+  text-align: left;
+  cursor : pointer;
+  font-size : 12px;
+  background-color: white;
+}
+.dropdown-content{
+  display : none;
+  position : absolute;
+  z-index : 1; /*다른 요소들보다 앞에 배치*/
+  font-weight: 400;
+  background-color: white;
+  border: 0.1px solid #1187CF;
+  min-width : 200px;
+  border-radius: 3px;
+  
+}
+
+.dropdown-content a{
+  display : block;
+  text-decoration : none;
+  color : rgb(37, 37, 37);
+  font-size: 15px;
+  padding : 12px 20px;
+  background-color: white;
+}
+
+.dropdown-content a:hover{
+  background-color : #ececec
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}

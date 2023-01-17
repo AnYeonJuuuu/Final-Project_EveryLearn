@@ -1,0 +1,149 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>에브리런</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+
+
+<link rel="stylesheet" href="/el/resources/css/faq/list.css">
+<link rel="stylesheet" href="/el/resources/css/emp-comm/common.css">
+<link rel="stylesheet" href="/el/resources/css/common/reset.css">
+
+<!-- 파비콘 -->
+<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
+</head>
+<body>
+
+<main>
+<%@ include file="/WEB-INF/views/notice/notice-header.jsp" %>
+    <div class="banner">
+        <div id="banner-text"><span>✨에브리런의 궁금한 점을 검색해 주세요!✨</span></div>
+        <div id="banner-input">
+            <form action="" method="post">
+                <input id="searchBar" type="text" name="search" placeholder="Search.." autocomplete="off" />
+                <button type="submit" class="search-button">
+                    <span class="material-symbols-outlined" id="dodbogi">search</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="a1">
+            <div id="h1">💡일반 회원 자주 묻는 질문</div>
+            <br>
+            
+            <c:forEach items="${ memberFaqList }" var="m" >
+	            <button class="accordion">${m.title}</button>
+	            <div class="panel">
+	                <br>
+	                <p>${m.content}</p>
+	                <br>
+	            </div>
+			</c:forEach>
+			
+            <button class="accordion">비밀번호를 바꾸고 싶습니다.</button>
+            <div class="panel">
+                <br>
+                <p>,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <br>
+            </div>
+
+
+        </div>
+        <div id="hr"></div>
+        <div class="a2">
+            <div id="h1">💡기업 회원 자주 묻는 질문</div>
+            <br>
+            
+            <c:forEach var="e" items="${ empFaqList }">
+	            <button class="accordion">${ e.title }</button>
+	            <div class="panel">
+	                <br>
+	                <p>${ e.content }</p>
+	                <br>
+	            </div>
+			</c:forEach>
+
+            <button class="accordion">기업 서비스 가입, 이용 절차가 궁금합니다.</button>
+            <div class="panel">
+                <br>
+                <p>,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <br>
+            </div>
+
+            <button class="accordion">등록된 기업 회사 정보는 어디에 노출되나요?</button>
+            <div class="panel">
+                <br>
+                <p>,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <br>
+            </div>
+
+            <button class="accordion">에브리런 서비스 중 오류가 발생해요.</button>
+            <div class="panel">
+                <br>
+                <p>,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <br>
+            </div>
+
+            <button class="accordion">기업 서비스 가입, 이용 절차가 궁금합니다.</button>
+            <div class="panel">
+                <br>
+                <p>,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <br>
+            </div>
+
+            <button class="accordion">기업 서비스 가입, 이용 절차가 궁금합니다.</button>
+            <div class="panel">
+                <br>
+                <p>,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <br>
+            </div>
+
+            <button class="accordion">기업 서비스 가입, 이용 절차가 궁금합니다.</button>
+            <div class="panel">
+                <br>
+                <p>,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <br>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+
+<script>
+
+
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+</body>
+</html>

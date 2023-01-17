@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="noticeMapper">
+
+	<!-- 공지 글쓰기 -->
+	<insert id="insertNotice" parameterType="noticeVo">
+		INSERT INTO NOTICE
+		(
+			 NO 
+		    , ADMIN
+		    , TITLE
+		    , CONTENT 
+		    , THUMB
+		)
+		VALUES
+		(
+			 SEQ_NOTICE_NO.NEXTVAL
+			, 1
+			,#{title}
+			,#{content}
+			,#{thumb}
+		)	
+	</insert>
+	
+	<!-- 페이징 -->
+	<select id="getNoticeList" resultType="noticeVo">
+ 		SELECT * FROM
+ 		(
+	 		SELECT ROWNUM RN, T.*
+	 		FROM
+	 		(
+		 		SELECT 
+			 		N.NO ,
+				    N.TITLE ,
+				    N.CONTENT ,
+				    N.HIT,
+				    N.ENROLL_DATE ,
+				    N.MODIFY_DATE ,
+				    N.DELETE_YN ,
+			    	A.NICK AS ADMIN
+	 			FROM NOTICE N
+	 			JOIN ADMIN A ON (N.ADMIN = A.NO)
+	 			WHERE N.DELETE_YN = 'N'
+	 			ORDER BY N.NO DESC
+	 		) T
+ 		)
+ 		WHERE RN BETWEEN #{startRow} AND #{endRow}
+ 	</select>
+ 	
+ 	<!-- 공지 삭제 -->
+ 	<update id="deleteNotice" >
+ 		UPDATE NOTICE
+ 		SET
+ 		DELETE_YN = 'Y'
+ 		WHERE NO IN 
+ 		<foreach collection="array" item="n" open="(" close=")" separator=",">
+ 		#{n}
+ 		</foreach>
+ 	</update>
+ 	
+ 	<!-- 공지 총 몇 개 있는지 -->
+ 	<select id="getNoticeCnt" resultType="int">
+ 		SELECT COUNT(NO)
+ 		FROM NOTICE
+ 		WHERE DELETE_YN = 'N'
+ 	</select>
+	
+	<!-- 공지 수정 -->
+	<update id="editNotice">
+		UPDATE NOTICE 
+        	SET TITLE = #{title}, 
+        		CONTENT = #{content}, 
+        		MODIFY_DATE = TO_CHAR(SYSDATE,'YY.MM.DD HH24:MI') 
+        		, THUMB = #{thumb}
+        WHERE NO = #{no}
+	</update>
+	
+	<!-- 공지 디테일 -->
+	<select id="selectDetail" resultType="noticeVo">
+		SELECT 
+		    N.NO ,
+		    N.TITLE ,
+		    N.CONTENT ,
+		    N.HIT,
+		    N.ENROLL_DATE ,
+		    N.MODIFY_DATE ,
+		    N.DELETE_YN ,
+		    A.NICK AS ADMIN,
+		    N.THUMB
+		    
+		FROM NOTICE N
+		JOIN ADMIN A ON N.ADMIN = A.NO 
+		WHERE N.NO = #{no}
+	</select>
+	
+	<!-- 조회수 + -->
+	<update id="increaseHit" parameterType="noticeVo">
+		UPDATE NOTICE
+			SET
+				HIT = HIT+1
+		WHERE NO = #{no}
+	</update>
+	
+  
+</mapper>

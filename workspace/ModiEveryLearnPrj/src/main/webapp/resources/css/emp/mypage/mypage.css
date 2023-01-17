@@ -1,0 +1,262 @@
+*{
+  box-sizing: border-box;
+}
+
+.corp-info-menu{
+  background-color: rgba(233, 232, 232, 0.788);
+}
+
+.content{
+  background-color: rgb(248, 249, 250);
+  flex-grow: 1;
+}
+
+.wrapper{
+  width: 100%;
+}
+
+.main{
+  padding: 0 32px;
+  width: 100%;
+  max-width: 1148px;
+  margin: 0 auto;
+}
+
+.section-title{
+  padding: 24px 40px 25px;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.4;
+  border-bottom: 1px solid rgb(242, 244, 246);
+  margin-bottom: 0px;
+  color: rgb(33, 37, 42);
+}
+
+.info-section{
+  margin-top: 30px;
+  padding: 32px 40px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 6px;
+  box-shadow: rgb(0 0 0 / 3%) 0px 8px 20px -7px, rgb(0 0 0 / 8%) 0px 0px 1px 0px;
+  margin-bottom: 30px;
+}
+
+.info-wrapper{
+  padding: 32px 40px;
+}
+
+.name{
+  width: 100%;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(100px, 1fr));
+  column-gap: 20px;
+  width: 100%;
+}
+
+.interval{
+  margin-bottom: 30px;
+}
+
+.title{
+  margin-bottom: 8px;
+}
+
+.essential{
+  color: rgb(229, 0, 0);
+}
+
+input ,.category{ 
+  width: 100%;
+  height: 1.9rem;
+}
+
+.introduce{
+  margin: 0px;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(234, 236, 238);
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.2;
+  resize: vertical;
+  min-height: 250px;
+  max-height: 470px;
+}
+
+.sales input{
+  width: 100%;
+  padding-right: 50px;
+}
+
+.input-wrapper{
+  position: relative;
+}
+
+.input-wrapper>span{
+  position: absolute;
+  right: 10px;
+  line-height: 1.9rem;
+}
+
+.footer{
+  height: 30px;
+  text-align: center;
+  color: rgb(182, 181, 181);
+  font-size: 14px;
+  padding-bottom: 120px;
+}
+
+.admin-submit{
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0px 130px;
+  width: calc(100% - 250px);
+  height: 4.867rem;
+  background-color: rgb(255, 255, 255);
+  border-top: 1px solid rgb(234, 236, 238);
+  z-index: 10;
+}
+
+.admin-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background-color: #1187CF;
+  color: rgb(255, 255, 255);
+  padding: 11px 14px;
+  font-size: 15px;
+  font-weight: bold;
+  width: 9.333rem;
+}
+
+.admin-btn:disabled{
+  cursor: not-allowed;
+  background-color: rgba(17, 134, 207, 0.349);
+}
+
+.img-upload-wrapper{
+  margin-bottom: 30px;
+}
+
+.label{
+  margin-bottom: 10px;
+}
+
+.img-upload label{
+  position: relative;
+  display: block;
+  border-radius: 6px;
+  width: 256px;
+  background-color: rgb(255, 255, 255);
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.img-input{
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(234, 236, 238);
+  border-radius: 6px;
+}
+
+.img-input input{
+  display: none;
+}
+
+.img-input img{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 1;
+}
+
+.choose-img{
+  margin: 6px 0px 0px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgb(161, 170, 178);
+}
+
+.upload-btn{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background-color: rgb(242, 244, 246);
+  color: rgb(83, 89, 97);
+  padding: 7px 12px;
+  font-size: 11px;
+  line-height: 1.45;
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+.img-guide{
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgb(135, 142, 152);
+}
+
+.warn{
+  margin: 20px 0px 32px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgb(135, 142, 152);
+}
+
+.x-icon{
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.x-icon>div{
+  display: flex;
+  align-items: center;
+  margin-right: 1px;
+}
+
+.uploaded{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.quit{
+  display: flex;
+  justify-content: end;
+}
+
+.quit>button{
+  border: none;
+  background: transparent;
+  text-decoration: underline;
+  font-size: 12px;
+  color: gray;
+}

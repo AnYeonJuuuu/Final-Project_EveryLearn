@@ -1,0 +1,170 @@
+/* 본문 */
+#container{
+    width: 100%;
+    height: 80%;
+    margin-top: 35px;
+}
+
+
+
+
+#main{
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr 2fr 0.5fr 0.8fr 0.5fr;
+    grid-template-rows: repeat(14, 60px);
+    align-content: center;
+    padding: 10px;
+    width: 70%;
+    /* margin-top: 80px; 왜 안 먹힘? 컨테이너랑 배너 분리하고 컨테이너에 주니까 댐 */
+    margin: 0 auto;
+}
+
+.th{
+    border-bottom: 1px solid black;
+    font-weight: 600;
+}
+
+.td{
+    border-bottom: 1px solid lightgray;
+    font-size: 15px;
+}
+
+#title-a:hover{
+    color: #1187CF;
+}
+
+#title-a{
+	text-decoration-line: none;
+	color: black;
+}
+
+#main .th,.td, #searchBar{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+
+#main-bot {
+    grid-column: span 6;
+    row-gap: 40px;
+    display: flex;
+    flex-direction: row-reverse;   
+    margin: 7px;
+}
+
+#write{
+    border-bottom: none;
+    background-color: #1187CF;
+    color: white;
+    border-radius: 10px;   
+    font-size: 13px;
+    height: 35px;
+    margin-top: 20px
+    
+}
+
+#write:hover{
+    background-color: #0d73b2;
+}
+
+#page-area{
+    grid-column: span 6;
+    text-align: center;
+    margin-top: 10px;
+    border-bottom: none;
+    display: flex;
+    flex-direction : column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+#searchBar{
+    grid-column: span 6;
+    text-align: center;
+    margin-top: 10px;
+    border-bottom: none;
+    display: flex;
+    flex-direction : row;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+#search{
+    width: 60px;
+    height: 30px;
+    outline: none;
+    border-style: none;
+    margin: 5px;
+    background-color: #D9D9D9;
+    opacity: 50%;
+    text-align: center;
+    font-size: 13px;
+    border-radius: 5px;
+}
+
+#search2{
+    outline: none;
+    border-style: none;
+    border-bottom: 1px solid lightgray;
+    margin-top: 5px;
+}
+
+#page-btn{
+    border-top: 0px;
+    border-bottom: 0px;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#page-btn:hover{
+    opacity: 20%;
+    font-size: large;
+    background-color: #1187CF;
+}
+
+.search-button{
+    outline: none;
+    border-style: none;
+    background-color: white;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 1px;
+}
+
+
+#dodbogi{
+    opacity: 20%;
+
+}
+
+#dodbogi:hover{
+    opacity: 50%;
+    
+}
+
+.comm-banner{
+	width: 100%;
+    height: 100px;
+    background-color: #1187CF;
+    padding: 25px;
+  	display: flex;
+  	
+}
+
+#span1{
+	font-size: 30px;
+	color: white;
+	font-weight: 600;
+}
+
+#span2{
+	font-size: 15px;
+	color: white;
+	text-align: center;
+	position: relative;
+	left: 10px;
+	top: 17px
+}
+

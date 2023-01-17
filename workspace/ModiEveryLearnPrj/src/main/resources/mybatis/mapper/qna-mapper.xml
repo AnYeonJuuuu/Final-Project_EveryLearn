@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qnaMapper">
+
+	<!-- 글쓰기 -->
+	<insert id="insertMemberWrite" parameterType="com.coding5.el.qna.vo.QnaVo">
+		INSERT INTO QNA
+		(
+		     NO
+		    ,ADMIN_NO
+		    ,MEMBER_NO
+		    ,CATEGORY
+		    ,TITLE
+		    ,CONTENT 
+		    , THUMB
+		)
+		VALUES
+		(
+		     SEQ_QNA_NO.NEXTVAL
+		    , 1
+		    , #{memberNo}
+		    , #{category}
+		    , #{title}
+		    , #{content}
+		    , #{thumb}
+		)
+	</insert>
+	
+	<!-- 관리자 답변 쓰기 -->
+	<update id="answerAdminWrite" parameterType="com.coding5.el.qna.vo.QnaVo">
+		
+	</update>
+	
+	<!-- 글 갯수 -->
+	<select id="getQnaCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM QNA
+	</select>
+	
+	<!-- qna 리스트 -->
+	<select id="getQnaList" resultType="com.coding5.el.qna.vo.QnaVo">
+		
+		SELECT * FROM
+	 	(
+		 		SELECT ROWNUM RN, T.*
+		 		FROM
+		 	(
+				SELECT F.NO
+				    ,C.NAME AS CATEGORY
+				    ,M.NICK
+				    ,F.TITLE 
+				    ,F.CONTENT
+				    ,F.ENROLL_DATE
+				    ,F.ANSWER_YN
+				    ,M.NO AS MNO
+				FROM QNA F
+				full outer JOIN QNA_CATE C
+				ON F.CATEGORY = C.NO
+				JOIN MEMBER M
+				ON F.MEMBER_NO = M.NO
+				WHERE F.DELETE_YN = 'N'
+				ORDER BY F.NO DESC
+			) T
+	 	)
+	 	WHERE RN BETWEEN #{startRow} AND #{endRow}
+		
+	</select>
+  
+  	<select id="selectDetail" resultType="com.coding5.el.qna.vo.QnaVo">
+  		SELECT Q.NO,
+		    C.NAME AS CATEGORY,
+		    M.NICK,
+		    Q.TITLE,
+		    Q.CONTENT,
+            Q.ANSWER,
+            Q.ENROLL_DATE ,
+		    Q.ANSWER_YN,
+		    Q.THUMB,
+            A.NICK AS aNick
+		FROM QNA Q
+		full outer JOIN QNA_CATE C
+		ON Q.CATEGORY = C.NO
+		JOIN MEMBER M
+		ON Q.MEMBER_NO = M.NO
+        JOIN ADMIN A
+        ON Q.ADMIN_NO = A.NO
+		WHERE Q.NO = #{no}
+  	
+  	</select>
+  	
+  	<!-- 관리자 답변 등록 -->
+  	<update id="updateAdminWrite" parameterType="com.coding5.el.qna.vo.QnaVo">
+  		
+		UPDATE QNA
+        	SET 
+                ANSWER = #{answer},
+        		MODIFY_DATE = TO_CHAR(SYSDATE,'YY.MM.DD HH24:MI'),
+                ANSWER_YN = 'Y'
+        WHERE NO = #{no}
+  	
+  	</update>
+  
+</mapper>

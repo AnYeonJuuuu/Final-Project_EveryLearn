@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="teacherMapper">
+
+<resultMap type="com.coding5.el.teacher.vo.TeacherVo" id="teacherMap">
+	<result property="no" column="NO"/>
+	<result property="classCate" column="CATEGORY"/>
+
+	
+</resultMap>
+
+	<insert id="insertTeacher">
+		INSERT INTO TEACHER
+		(
+		NO
+		,MEMBER_NO
+		,CATEGORY
+		,CAREER
+		,SHORT_INTRO
+		,INTRODUCE
+		,RECORD
+		)
+		VALUES
+		(
+		SEQ_TEACHER_NO.NEXTVAL
+		,#{memberNo}
+		,#{classCate}
+		,#{career}
+		,#{shortIntro}
+		,#{introduce}
+		,#{changeName2}
+		)
+	</insert>
+
+	<select id="selectTeacherNo" resultType="com.coding5.el.teacher.vo.TeacherVo" resultMap="teacherMap">
+		select *
+		from teacher
+		where member_no = #{memberNo}
+	</select>
+
+	<insert id="insertImg">
+		INSERT INTO PROFILE_TEACHER_ATTATCH
+		(
+		NO
+		,TEACHER_NO
+		,CHANGE_NAME
+		)
+		VALUES
+		(
+		SEQ_TEACHER_ATTATCH_NO.NEXTVAL
+		,${teacherNo}
+		,#{changeName}
+		)
+	</insert>
+	
+	<select id="selectTeacher" resultType="com.coding5.el.teacher.vo.TeacherVo">
+		SELECT C.NO CLASS_NO
+		    ,T.NO TEACHER_NO
+		    ,T.CATEGORY CLASS_CATE
+		    ,T.CAREER CAREER
+		    ,T.SHORT_INTRO SHORT_INTRO
+		    ,T.INTRODUCE INTRODUCE
+		    ,C.TEACHER_NO TEACHER_NO
+		    ,C.CATEGORY CLASS_CATE
+		    ,C.CLASS_NAME CLASS_NAME
+		    ,C.CLASS_CONTENT CLASS_CONTENT
+		    ,C.RECOMM RECOMM
+		    ,C.STUDENT_CNT STUDENT_CNT
+		    ,C.PRICE PRICE 
+		    ,C.ENROLL_DATE ENROLL_DATE
+		    ,C.MODIFY_DATE MODIFY_DATE
+		    ,C.DELETE_YN DELETE_YN
+		    ,C.CLASS_CNT CLASS_CNT
+		    ,C.REV_AVG REV_AVG
+		    ,C.REVIEW_CNT REVIEW_CNT
+		    
+		FROM CLASS  C
+		JOIN TEACHER T
+		ON C.TEACHER_NO = T.NO
+		WHERE TEACHER_NO = (
+		    SELECT M.NO
+		    FROM TEACHER T
+		    JOIN MEMBER M
+		    ON T.MEMBER_NO = M.NO
+		    WHERE M.NICK = #{teacherNick}
+		)
+	
+	</select>
+	
+	<select id="selectTeacherInfo" resultType="com.coding5.el.member.vo.TeacherMemberVo">
+	SELECT M.NICK TEACHER_NICK
+	, T.MEMBER_NO TEACHER_NO
+	, T.SHORT_INTRO
+	, T.CAREER
+	,(
+	    SELECT PTA.CHANGE_NAME
+	    FROM PROFILE_TEACHER_ATTATCH PTA
+	    WHERE T.MEMBER_NO = PTA.TEACHER_NO) AS TEA_IMG_CHANGE_NAME
+	FROM  TEACHER T
+	JOIN MEMBER M
+	ON M.NO = T.MEMBER_NO
+	WHERE M.NO = ${memberNo}
+	</select>
+	
+	<select id="selectClassList" resultType="com.coding5.el.member.vo.TeacherMemberVo">
+		SELECT C.CLASS_NAME
+		, C.RECOMM
+		, C.STUDENT_CNT
+		, C.PRICE
+		, C.NO CLASS_NO
+		, M.NICK TEACHER_NICK  
+        , C.THUMB CL_IMG_CHANGE_NAME
+		, C.PRICE * C.STUDENT_CNT TOTAL_PRICE    
+		FROM CLASS C
+		JOIN MEMBER M
+		ON C.TEACHER_NO = M.NO
+		WHERE TEACHER_NO = ${memberNo}
+	</select>
+	
+	<select id="selectNewTeacher" resultType="com.coding5.el.teacher.vo.TeacherVo">
+		SELECT NO TEACHER_RE
+        FROM TEACHER
+        WHERE MEMBER_NO = ${memberNo}
+	</select>
+
+</mapper>

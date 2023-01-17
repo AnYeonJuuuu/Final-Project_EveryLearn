@@ -1,0 +1,247 @@
+@charset "UTF-8";
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+#contain {
+    width: 800px;
+    height: 700px;
+    margin: auto;
+
+}
+
+#container{
+    display: grid;
+    grid-template-columns: 1fr 6fr 1.1fr;
+}
+
+#title {
+    text-align: center;
+}
+
+/* 검색바 */
+.search_input{
+    width: 500px;
+    padding: 12px 24px;
+    background-color: #1187CF;
+    transition: transform 250ms ease-in-out;
+    font-size: 14px;
+    line-height: 18px;
+    color: #1187CF;
+    background-color: transparent;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    background-position: 95% center;
+    border-radius: 50px;
+    border: 2px solid #1187CF;
+    transition: all 250ms ease-in-out;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+
+    display: flex;
+    justify-content: center;
+    
+}
+
+.search_input:hover{
+    padding: 12px 0;
+    outline: 0;
+    border: 2px solid transparent;
+    border-bottom: 2px solid #1187CF;
+    border-radius: 0;
+    background-position: 100% center;
+}
+
+.search_input:focus{
+    padding: 12px 0;
+    outline: 0;
+    border: 2px solid transparent;
+    border-bottom: 2px solid #1187CF;
+    border-radius: 0;
+    background-position: 100% center;
+}
+
+.search_input::placeholder{
+        color: color(#1187CF a(0.8));
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+}
+
+#serch{
+    display: flex;
+    justify-content: center;
+}
+
+#btn-write{
+    width: 80px;
+    height: 30px;
+    margin: auto;
+    border-radius: 50px;
+    border: none;
+    background-color: #1187CF;
+    color: white;
+}
+
+#btn-write{
+    margin-top: 10px;
+}
+
+
+
+
+#study-wrap{
+    /* margin-top: 30px; */
+    /* border-bottom: 2px solid gray; */
+    
+}
+
+#study-wrap>div{
+    width: 800px;
+    height: 130px;
+    border-top: 2px solid gray;
+    margin: auto;
+}
+
+/* #comm-study{
+    width: 600px;
+    height: 100px;
+    border-top: 2px solid gray;
+    margin: auto;
+} */
+
+.orderby{
+    border: none;
+    background-color: white;
+}
+
+.orderby{
+    margin-top: 30px;
+    border: none;
+    margin-bottom: 5px;
+    width: 90px;
+    height: 20px;
+}
+
+#orderby{
+    width: 600px;
+    height: 60px;
+    margin: auto;
+    display: flex;
+    vertical-align: bottom;
+    margin-left: 0px;
+}
+
+#orderby>ul {
+    padding: 0;
+    display: flex;
+    vertical-align: bottom;
+    margin-bottom: 3px;
+  }
+#orderby li {
+    display: inline-block;
+    vertical-align: bottom;
+  }
+
+#study-context{
+    display: grid;
+    grid-template-columns: 3.5fr 1fr;
+}
+
+.study-context{
+    display: flex;
+    align-items: center;
+
+}
+
+.study-write{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+#comment{
+    display: inline-block;
+    vertical-align: bottom;
+    justify-content: center;
+}
+
+#comment>div{
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    margin-top:7px;
+
+}
+
+#study-title{
+    font-size: medium;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#study-content{
+    font-size: small;
+    text-align: center;
+
+    overflow: hidden;  		
+    /* text-overflow: ellipsis; 
+    white-space: nowrap; 		
+    word-break:break-all; */
+    width: 500px;
+    height: 40px;
+    margin: auto;
+    cursor: pointer;
+    /* font-weight: 700; */
+}
+
+.study-context{
+    display: flex;
+    justify-self: center;
+    height: 128px;
+}
+
+#btn-comment{
+    margin: auto;
+    background-color: #1187CF;
+    border: none;
+    color: white;
+    width: 90px;
+    height: 30px;
+    border-radius: 10px;
+    font-weight: 600;
+
+}
+
+p{
+    /* margin-top: 5px; */
+    margin-bottom: 0px;
+}
+
+#study-wrap:last-child{
+    border-bottom: 2px solid gray;
+}
+
+#page-alert{
+    margin: auto;
+    width: 500px;
+}
+
+#pagenation{
+    color: #1187CF;
+    width: 480px;
+    display: flex;
+    justify-content: center;
+}
+
+#page-active{
+    background-color: #1187CF;
+}
+
+a:visited { 
+    background-color: #1187CF !important; 
+    color: aliceblue !important;
+}

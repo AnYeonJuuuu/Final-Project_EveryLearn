@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resumeMapper">
+
+	<!-- 이력서 조회하기 -->
+	<select id="selectResumeOne" resultType="ResumeVo">
+		SELECT 
+			NO
+            , MEMBER_NO
+            , CATEGORY
+            , NAME
+            , PHONE
+            , EMAIL
+            , ADDRESS
+            , DETAIL_ADDRESS
+            , LINK
+            , INTRODUCE
+            , ATTACH AS ATTACH_NAME
+		FROM RESUME
+		WHERE MEMBER_NO = #{value}
+	</select>
+	
+	<!-- 학력 조회하기 -->
+	<select id="selectEducation" resultType="EducationVo">
+		SELECT
+			NO AS EDUCATION_NO
+			, RESUME_NO
+			, STATUS
+			, EDUCATION
+			, SCHOOL_NAME
+			, MAJOR
+			, ENTER AS ENTER_SCHOOL
+			, GRADUATE
+		FROM EDUCATION
+		WHERE RESUME_NO = #{no}
+	</select>
+	
+	<!-- 언어 조회하기 -->
+	<select id="selectLanguage" resultType="LanguageVo">
+		SELECT
+			NO AS LANGUAGE_NO
+			, RESUME_NO
+			, LANGUAGE
+			, LANGUAGE_LEVEL
+		FROM LANGUAGE
+		WHERE RESUME_NO = #{no}
+	</select>
+	
+	<!-- 수상내역 조회하기 -->
+	<select id="selectAward" resultType="AwardVo">
+		SELECT
+			NO AS AWARD_NO
+			, RESUME_NO
+			, AWARD_NAME
+			, AWARD_DATE
+			, AGENCY AS AWARD_AGENCY
+		FROM AWARD
+		WHERE RESUME_NO = #{no}
+	</select>
+	
+	<!-- 경력 조회하기 -->
+	<select id="selectCareer" resultType="CareerVo">
+		SELECT
+			NO AS CAREER_NO
+			, RESUME_NO
+			, TYPE
+			, COMPANY_NAME
+			, TEAM
+			, POSITION
+			, ENTER AS JOIN_COMPANY
+			, LEAVE
+			, CURRENT_YN
+		FROM CAREER
+		WHERE RESUME_NO = #{no}
+	</select>
+	
+	<!-- 자격증 조회하기 -->
+	<select id="selectCertificate" resultType="CertificateVo">
+		SELECT
+			NO AS CERTIFICATE_NO
+			, RESUME_NO
+			, CERTIFICATE_NAME
+			, CERTIFICATE_DATE
+			, AGENCY AS CERTIFICATE_AGENCY
+		FROM CERTIFICATE
+		WHERE RESUME_NO = #{no}
+	</select>
+	
+	<!-- 이력서 작성하기 -->
+	<update id="updateResume">
+		   MERGE INTO RESUME
+			USING DUAL
+			ON 
+			(
+				NO = #{no}
+				AND MEMBER_NO = #{memberNo}
+			)
+		WHEN MATCHED THEN
+			UPDATE SET
+                CATEGORY = #{category}
+                , NAME = #{name}
+                , PHONE = #{phone}
+                , EMAIL = #{email}
+				, ADDRESS = #{address}
+                , DETAIL_ADDRESS = #{detailAddress}
+				, LINK = #{link}
+				, INTRODUCE = #{introduce}
+				, MODIFY_DATE = SYSDATE
+                , ATTACH = #{attachName}
+		WHEN NOT MATCHED THEN
+			INSERT
+			(
+				NO
+                , MEMBER_NO
+                , CATEGORY
+                , NAME
+                , PHONE
+                , EMAIL
+                , ADDRESS
+                , DETAIL_ADDRESS
+                , LINK
+                , INTRODUCE
+                , ENROLL_DATE
+                , ATTACH
+			)
+			VALUES
+			(
+				SEQ_RESUME_NO.NEXTVAL
+				, #{memberNo}
+				, #{category}
+				, #{name}
+				, #{phone}
+				, #{email}
+				, #{address}
+				, #{detailAddress}
+				, #{link}
+				, #{introduce}
+				, SYSDATE
+				, #{attachName}
+			)
+	</update>
+	
+	<!-- 이력서 시퀀스 번호 가져오기 -->
+	<select id="selectResumeSeqNo" resultType="String">
+		SELECT NO
+		FROM RESUME
+		WHERE MEMBER_NO = #{value} 
+	</select>
+	
+	<!-- 학력 인서트 -->
+	<update id="updateEducation" parameterType="java.util.List">
+		BEGIN
+		INSERT ALL
+		<foreach collection="list" item="ev" open="" close="SELECT * FROM DUAL" >
+					INTO EDUCATION
+				(
+					NO 
+					, RESUME_NO
+					, STATUS
+					, EDUCATION
+					, SCHOOL_NAME
+					, MAJOR
+					, ENTER
+					, GRADUATE
+				)
+				VALUES
+				(
+					GET_EDUCATION_SEQ()
+					, #{ev.resumeNo}
+					, #{ev.status}
+					, #{ev.education}
+					, #{ev.schoolName}
+					, #{ev.major}
+					, #{ev.enterSchool}
+					, #{ev.graduate}
+				)
+		</foreach>
+		;
+		END;
+	</update>
+	
+	<!-- 학력 삭제하기 -->
+	<delete id="deleteEducation">
+		DELETE FROM EDUCATION
+		WHERE RESUME_NO = #{value}
+	</delete>
+
+	<!-- 수상내역 작성하기 -->
+	<update id="updateAward" parameterType="java.util.List">
+		BEGIN
+		INSERT ALL	
+		<foreach collection="list" item="av" open="" close="SELECT * FROM DUAL">
+				INTO AWARD
+				(
+					NO
+					, RESUME_NO
+					, AWARD_NAME
+					, AWARD_DATE
+					, AGENCY
+				)
+				VALUES
+				(
+					GET_AWARD_SEQ()
+					, #{av.resumeNo}
+					, #{av.awardName}
+					, #{av.awardDate}
+					, #{av.awardAgency}
+				)
+		</foreach>
+		;
+		END;
+	</update>
+	
+	<!-- 수상내역 삭제하기 -->
+	<delete id="deleteAward">
+		DELETE FROM AWARD
+		WHERE RESUME_NO = #{value}
+	</delete>
+	
+	<!-- 경력 작성하기 -->
+	<update id="updateCareer" parameterType="java.util.List">
+	BEGIN
+	INSERT ALL
+	<foreach collection="list" item="cv" open="" close="SELECT * FROM DUAL">
+				INTO CAREER
+				(
+					NO
+					, RESUME_NO
+					, TYPE
+					, COMPANY_NAME
+					, TEAM
+					, POSITION
+					, ENTER
+					, LEAVE
+					, CURRENT_YN
+				)
+				VALUES
+				(
+					GET_CAREER_SEQ()
+					, #{cv.resumeNo}
+					, #{cv.type}
+					, #{cv.companyName}
+					, #{cv.team}
+					, #{cv.position}
+					, #{cv.joinCompany}
+					, #{cv.leave}
+					, #{cv.currentYN}
+					
+				)
+		</foreach>
+		;
+		END;
+	</update>
+	
+	<!-- 경력 삭제하기 -->
+	<delete id="deleteCareer">
+		DELETE FROM CAREER
+		WHERE RESUME_NO = #{value}
+	</delete>
+	
+	<!-- 자격증 내역 작성하기 -->
+	<update id="updateCertificate" parameterType="java.util.List">
+		BEGIN
+		INSERT ALL
+		<foreach collection="list" item="cfv" open="" close="SELECT * FROM DUAL">
+			INTO CERTIFICATE
+				(
+					NO
+					, RESUME_NO
+					, CERTIFICATE_NAME
+					, CERTIFICATE_DATE
+					, AGENCY
+				)
+				VALUES
+				(
+					GET_CERTIFICATE_SEQ()
+					, #{cfv.resumeNo}
+					, #{cfv.certificateName}
+					, #{cfv.certificateDate}
+					, #{cfv.certificateAgency}
+				)
+		</foreach>
+		;
+		END;
+	</update>
+	
+	<!-- 자격증 삭제하기 -->
+	<delete id="deleteCertificate">
+		DELETE FROM CERTIFICATE
+		WHERE RESUME_NO = #{value}
+	</delete>
+	
+	<!-- 언어 작성하기 -->
+	<update id="updateLanguage" parameterType="java.util.List">
+		BEGIN
+	INSERT ALL
+	<foreach collection="list" item="lv" open="" close="SELECT * FROM DUAL">
+				INTO LANGUAGE
+				(
+					NO
+					, RESUME_NO
+					, LANGUAGE
+					, LANGUAGE_LEVEL
+				)
+				VALUES
+				(
+					GET_LANGUAGE_SEQ()
+					, #{lv.resumeNo}
+					, #{lv.language}
+					, #{lv.languageLevel}
+				)
+		</foreach>
+		;
+		END;
+	</update>
+	
+	<!-- 언어 삭제하기 -->
+	<delete id="deleteLanguage">
+		DELETE FROM LANGUAGE
+		WHERE RESUME_NO = #{value}
+	</delete>
+</mapper>
+	

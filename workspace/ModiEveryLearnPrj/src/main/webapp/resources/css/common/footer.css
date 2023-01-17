@@ -1,0 +1,77 @@
+/* footer 하단 고정 [S] */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#container{
+  min-height: 100vh;
+  padding-bottom: 100px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: absolute;  
+  left: 0;
+}
+/* footer 하단 고정 [E] */
+
+footer.footer{
+  background-color: #303740;
+  color: white;
+}
+
+footer a{
+  text-decoration: none;
+  color: white;
+}
+
+footer .wrapper{
+  display: flex;
+  width: 1200px;
+  flex-direction: column;
+}
+
+footer .footer-list{
+  display: flex;
+  justify-content: space-between;
+  padding: 32px 20px;
+  font-size: 14px;
+  border-bottom: 1px solid #444;
+}
+
+footer .menu-list{
+  width: calc(100%/2);
+}
+
+footer .menu-title{
+  padding: 16px 0;
+  font-weight: bold;
+}
+
+footer .menu-content{
+  display: flex;
+  flex-direction: column;
+}
+
+footer .menu-content>a{
+  margin-bottom: 7px;
+}
+
+footer .info{
+  padding: 32px 20px;
+  font-size: 12px;
+}
+
+footer .info-top, footer .first, footer .second, footer .third{
+  margin-bottom: 8px;
+}
+
+footer .footer-logo>a>img{
+  width: 40px;
+  height: 40px;
+}

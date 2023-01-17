@@ -1,0 +1,108 @@
+#admin{
+    background-color: #005297;
+}
+
+#admin-cate{
+    display: block;
+}
+
+#admin-list{
+    font-weight: bold;
+}
+.info-items{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgb(244, 244, 244);
+}
+
+.title-wrap{
+    width: 180px;
+    padding: 13px 0px 13px 20px;
+    background-color: rgb(247, 245, 248);
+    border-top: 1px solid rgb(244, 244, 244);
+    text-align: left;
+    font-weight: 500;
+}
+
+
+.title-wrap>label{
+    font-weight: bold;
+}
+.input-wrap{
+    padding-left: 25px;
+    align-self: center;
+    display: block;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.input-wrap>input, .input-wrap>select{
+    display: block;
+    position: relative;
+    width: 200px;
+    height: 29px;
+    padding-right: 25px;
+    line-height: 29px;
+    border: none;
+    background: #fff;
+    font-size: 15px;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.input-wrap>input:focus{
+    outline: none;
+}
+
+.info-items>span{
+    display: block;
+    font-size: 12px;
+    color: red;
+    align-self: center;
+}
+
+.btn-area{
+    display: flex;
+    width: 100%;
+    padding: 20px 0px;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+}
+
+#modify{
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 80px;
+    height: 42px;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: #005297;
+    border: 0px none;
+}
+
+
+#profile-wrap{
+    height: 200px;
+}
+
+.mail-btn{
+    padding: 8px 0px 0px 20px;
+}
+
+#pwd-check{
+    width: 320px;
+    height: 42px;
+    padding: 0px 11px 0px 15px;
+    border-radius: 4px;
+    border: 1px solid rgb(221, 221, 221);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgb(51, 51, 51);
+    outline: none;
+    box-sizing: border-box;
+    margin-right: 10px;
+}
+

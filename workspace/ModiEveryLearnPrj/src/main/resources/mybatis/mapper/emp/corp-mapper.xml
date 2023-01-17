@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="corpMapper">
+  
+  <!-- 회원가입 -->
+  <insert id="insertCorpMember">
+  	INSERT INTO CORPORATE_MEMBER
+	(
+	    NO
+		, ID
+		, PWD
+		, COMPANY_NAME
+		, NAME
+		, PHONE
+		, ENROLL_DATE
+	)
+	VALUES
+	(	
+		SEQ_CORPORATE_MEMBER_NO.NEXTVAL
+		 , #{id}
+		 , #{pwd}
+		 , #{companyName}
+		 , #{name}
+		 , #{phone}
+		 , SYSDATE
+	)
+  </insert>
+  
+  <!-- 아이디 중복 체크 -->
+  <select id="selectCorpMemberById" resultType="CorpVo">
+  	SELECT ID 
+  	FROM CORPORATE_MEMBER 
+  	WHERE ID = #{id}
+  </select>
+  
+  <!-- 로그인 -->
+  <select id="selectOneCorpMember" resultType="CorpVo">
+  	SELECT 
+  		NO
+		, ID
+		, PWD
+		, COMPANY_NAME
+		, COMPANY_ADDRESS
+		, NAME
+		, PHONE
+		, ENROLL_DATE
+		, MODIFY_DATE
+		, COMPANY_NUM
+		, STATUS_YN
+		, QUIT_YN
+	FROM CORPORATE_MEMBER
+	WHERE ID = #{id}
+	AND QUIT_YN = 'N'
+  </select>
+
+  <!-- 기업 마이페이지(회사정보 화면) -->
+  <select id="selectOneCorpInfo" resultType="CorpVo">
+  	SELECT CM.*
+	FROM CORPORATE_MEMBER CM
+	WHERE CM.ID = #{id}
+  </select>
+  
+  <!-- 기업 마이페이지(회사정보 수정) -->
+  <update id="updateCorpInfo">
+  	UPDATE CORPORATE_MEMBER
+  	SET
+  		COMPANY_NAME = #{companyName}
+  		, COMPANY_NUM = #{companyNum}
+  		, COMPANY_ADDRESS = #{companyAddress}
+  		, DETAIL_ADDRESS = #{detailAddress}
+  		, INTRODUCE = #{introduce}
+  		, SECTOR = #{sector}
+  		, EMP_NUM = #{empNum}
+  		, SALES = #{sales}
+  		, HOMEPAGE = #{homepage}
+  		, LOGO = #{logo}
+  		, THUMB = #{thumb}
+  	WHERE NO = #{no}
+  </update>
+  
+  <!-- 기업 채용 공고 만들기 -->
+  <insert id="insertJobPost">
+  	INSERT INTO EMPLOYMENT
+  	(
+	    NO
+		, CORP_NO
+		, CATEGORY
+		, TITLE
+		, RESPONSIBILITY
+		, QUALIFICATION
+		, PREFERENTIAL
+		, SALARY
+		, BENEFITS
+		, INTRODUCE
+		, SECTOR
+		, ADDRESS
+		, CAREER
+		, DEADLINE
+	)
+	VALUES
+	(	
+		SEQ_EMPLOYMENT_NO.NEXTVAL
+		 , #{corpNo}
+		 , #{category}
+		 , #{title}
+		 , #{responsibility}
+		 , #{qualification}
+		 , #{preferential}
+		 , #{salary}
+		 , #{benefits}
+		 , #{introduce}
+		 , #{sector}
+		 , #{address}
+		 , #{career}
+		 , #{deadline}
+	)
+  </insert>
+  
+  <!-- 채용중 페이징 -->
+  <select id="selectHiringCnt" resultType="int">
+  	SELECT COUNT(*)
+  	FROM EMPLOYMENT
+  	WHERE CORP_NO = #{corpNo}
+  	AND DELETE_YN = 'N'
+  	AND DEADLINE >= TO_CHAR(SYSDATE,'YYYY-MM-DD')
+  </select>
+  
+  <!-- 채용중 페이지 리스트 -->
+  <select id="selectHiringList" resultType="EmploymentVo">
+ 	 SELECT
+       EMP.NO
+        , CORP_NO
+        , TITLE
+        , DEADLINE
+        , ENROLL_DATE
+        , A.CNT
+	FROM EMPLOYMENT EMP
+    LEFT JOIN (
+        SELECT EMP_NO, COUNT(*) AS CNT
+        FROM APPLY
+        GROUP BY EMP_NO
+    ) A
+    ON A.EMP_NO = EMP.NO
+	WHERE CORP_NO = #{corpNo}
+	AND DELETE_YN = 'N'
+	AND DEADLINE >= TO_CHAR(SYSDATE,'YYYY-MM-DD')
+	ORDER BY NO DESC
+  </select>
+  
+  <!-- 채용공고 수정 -->
+  <update id="updateJobPost">
+  	UPDATE EMPLOYMENT
+  	SET
+  		DELETE_YN = 'Y'
+  	WHERE NO = #{no}
+  </update>
+  
+  <!-- 채용 마감 페이징 -->
+  <select id="selectDeadlineCnt" resultType="int">
+  	SELECT COUNT(*)
+  	FROM EMPLOYMENT
+  	WHERE CORP_NO = #{corpNo}
+  	AND DELETE_YN = 'N'
+  	<![CDATA[AND DEADLINE < TO_CHAR(SYSDATE,'YYYY-MM-DD')]]>
+  </select>
+  
+  <!-- 채용 마감 리스트 -->
+  <select id="getDeadlineList" resultType="EmploymentVo">
+ 	 SELECT
+       EMP.NO
+        , CORP_NO
+        , TITLE
+        , DEADLINE
+        , ENROLL_DATE
+        , A.CNT
+	FROM EMPLOYMENT EMP
+    LEFT JOIN (
+        SELECT EMP_NO, COUNT(*) AS CNT
+        FROM APPLY
+        GROUP BY EMP_NO
+    ) A
+    ON A.EMP_NO = EMP.NO
+	WHERE CORP_NO = #{corpNo}
+	AND DELETE_YN = 'N'
+	<![CDATA[AND DEADLINE < TO_CHAR(SYSDATE,'YYYY-MM-DD')]]>
+	ORDER BY NO DESC
+  </select>
+  
+  <!-- 채용 전체보기 페이징 -->
+  <select id="selectTotalCnt" resultType="int">
+  	SELECT COUNT(*)
+  	FROM EMPLOYMENT
+  	WHERE CORP_NO = #{corpNo}
+  	AND DELETE_YN = 'N'
+  </select>
+  
+  <!-- 채용 전체보기 리스트 -->
+  <select id="getTotalList" resultType="EmploymentVo">
+  	 SELECT
+       EMP.NO
+        , CORP_NO
+        , TITLE
+        , DEADLINE
+        , ENROLL_DATE
+        , A.CNT
+	FROM EMPLOYMENT EMP
+    LEFT JOIN (
+        SELECT EMP_NO, COUNT(*) AS CNT
+        FROM APPLY
+        GROUP BY EMP_NO
+    ) A
+    ON A.EMP_NO = EMP.NO
+	WHERE CORP_NO = #{corpNo}
+	AND DELETE_YN = 'N'
+	ORDER BY NO DESC
+  </select>
+  
+  <!-- 채용 공고 세부조회 -->
+  <select id="selectJobPost" resultType="JobPostVo">
+  	SELECT 
+  		EMP.NO
+		, EMP.CORP_NO
+		, EMP.CATEGORY
+		, EMP.TITLE
+		, EMP.RESPONSIBILITY
+		, EMP.QUALIFICATION
+		, EMP.PREFERENTIAL
+		, EMP.SALARY
+		, EMP.BENEFITS
+		, EMP.INTRODUCE
+		, EMP.SECTOR
+		, EMP.ADDRESS
+		, EMP.CAREER
+		, EMP.DEADLINE
+		, CORP.COMPANY_NAME
+		, CORP.COMPANY_ADDRESS
+		, CORP.LOGO
+		, CORP.THUMB
+		, JOB.TYPE
+	FROM EMPLOYMENT EMP
+	JOIN CORPORATE_MEMBER CORP ON EMP.CORP_NO = CORP.NO
+	JOIN JOB_CATE JOB ON EMP.CATEGORY = JOB.NO
+	WHERE EMP.NO = #{no}
+  </select>
+  
+  <!-- 공고 조회(기업용) -->
+  <select id="selectEmployment" resultType="EmploymentVo">
+  	SELECT 
+	  	EMP.NO
+		, EMP.CORP_NO
+		, EMP.CATEGORY
+		, EMP.TITLE
+		, EMP.RESPONSIBILITY
+		, EMP.QUALIFICATION
+		, EMP.PREFERENTIAL
+		, EMP.SALARY
+		, EMP.BENEFITS
+		, EMP.INTRODUCE
+		, EMP.SECTOR
+		, EMP.ADDRESS
+		, EMP.CAREER
+		, EMP.DEADLINE
+		, EMP.ENROLL_DATE
+		, EMP.MODIFY_DATE
+		, EMP.DELETE_YN
+  	FROM EMPLOYMENT EMP
+  	WHERE EMP.NO = #{no}
+  </select>
+  
+  <!-- 채용 공고 수정하기 -->
+  <update id="updateEmployment">
+   UPDATE EMPLOYMENT
+  	SET
+  		CATEGORY = #{category}
+		, TITLE = #{title}
+		, RESPONSIBILITY = #{responsibility}
+		, QUALIFICATION = #{qualification}
+		, PREFERENTIAL = #{preferential}
+		, SALARY = #{salary}
+		, BENEFITS = #{benefits}
+		, INTRODUCE = #{introduce}
+		, SECTOR = #{sector}
+		, ADDRESS = #{address}
+		, CAREER = #{career}
+		, DEADLINE = #{deadline}
+		, MODIFY_DATE = SYSDATE
+  	WHERE NO = #{no}
+  	AND CORP_NO = #{corpNo}
+  </update>
+  
+  <!-- 회원 탈퇴 -->
+  <update id="updateCorpMember">
+  	UPDATE CORPORATE_MEMBER
+  	SET
+  		QUIT_YN = 'Y'
+  	WHERE NO = #{no}
+  </update>
+  
+  <!-- 지원자 현황 페이징 -->
+  <select id="selectApplyCnt" resultType="int">
+ 	SELECT COUNT(*)
+  	FROM APPLY
+  	WHERE EMP_NO = #{empNo}
+  </select>
+  
+  <!-- 지원자 현황 페이지 -->
+  <select id="selectApplyList" resultType="ApplyVo">
+	  SELECT 
+	        A.NO
+	        , A.MEMBER_NO
+	        , A.EMP_NO
+	        , R.NAME
+	        , R.PHONE
+	        , R.EMAIL
+	    FROM APPLY A
+	    JOIN RESUME R ON R.MEMBER_NO = A.MEMBER_NO
+	    WHERE EMP_NO = #{empNo}
+  </select>
+  
+  <!-- 인증번호 -->
+  <update id="updateCertNum">
+	   UPDATE 
+	     CORPORATE_MEMBER
+     SET 
+     	AUTHENTICATION = #{authentication},
+     	PERIOD = SYSDATE + 5/(24*60)
+     WHERE ID = #{id}
+  </update>
+  
+  <!-- 비밀번호 재설정 -->
+  <update id="updatePwd">
+    UPDATE 
+	     CORPORATE_MEMBER
+     SET 
+     	PWD = #{pwd}
+     WHERE AUTHENTICATION = #{authentication}
+     AND PERIOD > SYSDATE
+  </update>
+  
+</mapper>
