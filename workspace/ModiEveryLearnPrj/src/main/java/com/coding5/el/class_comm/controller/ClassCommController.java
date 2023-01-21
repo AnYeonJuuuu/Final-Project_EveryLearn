@@ -18,6 +18,7 @@ import com.coding5.el.class_comm.vo.CommentVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.page.Pagination;
 import com.google.gson.Gson;
+//import com.sun.tools.classfile.InnerClasses_attribute.Info;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,6 +33,34 @@ public class ClassCommController {
 	
 	@Autowired
 	private Gson gson;
+	
+	@GetMapping("writeModify")
+	public String writeModify(String cNo, Model model) {
+		
+		ClassCommVo modifyData = ccs.modifyData(cNo);
+		model.addAttribute("modifyData", modifyData);
+		
+		return "class_comm/write_modify";
+	}
+	
+	@PostMapping("writeModify")
+	public String writeModify(ClassCommVo classVo) {
+		
+		log.info("classVo :::" + classVo.getCateNo());
+		int result = ccs.modify(classVo);
+		
+		if(classVo.getCateNo().equals("1")) {
+			return "redirect:/class/qna";
+		}else if(classVo.getCateNo().equals("2")) {
+			return "redirect:/class/study";
+		}else if (classVo.getCateNo().equals("3")){
+			return "redirect:/class/free";
+		}else {
+			return "";
+		}
+		
+		
+	}
 	
 	//likeup ajax
 	@PostMapping("likeupAjax")

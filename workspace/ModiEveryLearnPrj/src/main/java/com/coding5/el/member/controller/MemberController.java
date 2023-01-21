@@ -34,6 +34,12 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	//내 강의 페이지
+	@GetMapping("kakaoLogin")
+	public String kakaoLogin() {
+		return "member/kakaoLogin";
+	}
+	
 	//학습진도율
 	@GetMapping("memberProgress")
 	public String memberProgress(String classNo, String mn,  Model model) {
@@ -221,6 +227,7 @@ public class MemberController {
 		
 		memberService.join(vo);
 		
+		
 		return "redirect:/member/login";
 	}
 	
@@ -268,12 +275,14 @@ public class MemberController {
 	
 	
 	@PostMapping("login")
-    public String login(MemberVo vo, HttpSession session, @RequestParam(value="type", defaultValue = "main" ) String type) {
+    public String login(MemberVo vo, HttpSession session, @RequestParam(value="type", defaultValue = "main" ) String type, String[] kakao) {
 
         MemberVo loginMember = memberService.login(vo);
+        
 
 //        log.info(loginMember.getTeaStatusYn());
         log.info("로그인 멤버 : " + loginMember);
+        log.info("kakao : " + kakao);
 
 
         if(loginMember==null) {

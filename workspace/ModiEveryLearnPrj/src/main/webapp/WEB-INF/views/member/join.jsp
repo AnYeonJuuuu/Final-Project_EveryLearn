@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Join!!</title>
 <link href="${pageContext.request.contextPath}/resources/css/member/join.css" rel="stylesheet" type="text/css">
 <link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 <script src="/el/resources/js/member/join.js"></script>

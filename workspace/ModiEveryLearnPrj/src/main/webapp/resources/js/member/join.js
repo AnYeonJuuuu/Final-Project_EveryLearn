@@ -46,7 +46,7 @@ function emptyPwd() {
     let emptyPwd = $('#memberPwd').val();
 
     if(emptyPwd == ''){
-        $("#pwdch").html("*비번 필수입력사항입니다.").css("color", "red");
+        $("#pwdch").html("*필수입력사항입니다.").css("color", "red");
         return false;
     }
 }

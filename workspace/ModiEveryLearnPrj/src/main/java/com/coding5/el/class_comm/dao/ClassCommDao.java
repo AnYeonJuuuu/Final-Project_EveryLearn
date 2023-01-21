@@ -51,5 +51,8 @@ public interface ClassCommDao {
 //	public int selectLikeupCheck(SqlSessionTemplate sst, HashMap<String, String> likeMap);
 	
 	public int updateIncreaseHit(SqlSessionTemplate sst, String classCommNo);
+	
+	public ClassCommVo selectModifyData(SqlSessionTemplate sst, String cNo);
+	public int updateModify(ClassCommVo classVo, SqlSessionTemplate sst);
 
 }

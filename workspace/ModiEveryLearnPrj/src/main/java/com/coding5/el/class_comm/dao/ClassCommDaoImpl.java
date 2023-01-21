@@ -136,9 +136,23 @@ public class ClassCommDaoImpl implements ClassCommDao{
 		return sst.selectOne("classCommMapper.selectLikeCnt", classCommNo);
 	}
 
+	
 	@Override
 	public int updateIncreaseHit(SqlSessionTemplate sst, String classCommNo) {
 		return sst.update("classCommMapper.updateIncreaseHit", classCommNo);
+	}
+
+	//게시글 수정 data
+	@Override
+	public ClassCommVo selectModifyData(SqlSessionTemplate sst, String cNo) {
+		return sst.selectOne("classCommMapper.selectModifyData", cNo);
+	}
+
+	//게시글 수정
+	@Override
+	public int updateModify(ClassCommVo classVo, SqlSessionTemplate sst) {
+		return sst.update("classCommMapper.updateModify", classVo);
+		
 	}
 	
 	

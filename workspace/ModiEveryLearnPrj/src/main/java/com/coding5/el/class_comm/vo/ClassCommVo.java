@@ -23,6 +23,7 @@ public class ClassCommVo {
 	private String category;
 	private String likeCnt;
 	private String likeupCheck;
+	private String no;
 	
 
 	

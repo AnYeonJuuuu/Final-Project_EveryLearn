@@ -161,6 +161,19 @@ public class ClassCommServiceImpl implements ClassCommService{
 	public int increaseHit(String classCommNo) {
 		return dao.updateIncreaseHit(sst, classCommNo);
 	}
+
+	//게시글 수정 data
+	@Override
+	public ClassCommVo modifyData(String cNo) {
+		
+		return dao.selectModifyData(sst, cNo);
+	}
+
+	//게시글 수정
+	@Override
+	public int modify(ClassCommVo classVo) {
+		return dao.updateModify(classVo,sst);
+	}
 	
 }//서비스레이어
 

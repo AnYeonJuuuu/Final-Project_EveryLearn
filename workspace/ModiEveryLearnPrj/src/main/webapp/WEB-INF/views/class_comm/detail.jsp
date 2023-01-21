@@ -62,19 +62,17 @@
                                     <i class="fa-regular fa-eye" style="font-size: small;"> ${detailVo.hit}</i>
                                 </div>
                             </div>
-
 							<c:choose>
-                            <c:when test=" ${ empty loginMember.memberNo  }">
-                            <div></div>
-                            </c:when>
-                            <c:otherwise>
+                            <c:when test="${loginMember.memberNo eq detailVo.writerNo}">
                             <div id="modi_delete">
-                               
-                                <div><img id="main-modify" src="/el/resources/img/member/edit.png" alt="" onclick="modify();"></div>
+                                <div><img id="main-modify" src="/el/resources/img/member/edit.png" alt="" onclick="location.href='/el/class/writeModify?cNo=${detailVo.classCommNo}'"></div>
                                 <div><img id="main-delete" src="/el/resources/img/member/delete.png" alt="" onclick="mainDelete();"></div>
                             </div>
+                            </c:when>
+                            <c:otherwise>
+                            <div></div>
                             </c:otherwise>
-                            </c:choose>
+                            </c:choose> 
                     </div>  
                     <!-- <div id="hidden-member">dfff</div> -->
                     <input type="hidden" name="hidden-member" id="hidden-member" value="${loginMember.memberNick}">

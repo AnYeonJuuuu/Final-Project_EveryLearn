@@ -307,5 +307,18 @@
 		SET HIT = HIT + 1
 		WHERE NO = ${classCommNo}
 	</update>
+	
+	<select id="selectModifyData" resultType="com.coding5.el.class_comm.vo.ClassCommVo">
+	SELECT *
+	FROM CLASS_COMM
+	WHERE NO = ${cNo}
+	</select>
+	
+	<update id="updateModify">
+		UPDATE CLASS_COMM
+		SET TITLE = #{title}
+		, CONTENT = #{content}
+		WHERE NO = ${no}
+	</update>
 
 </mapper>

@@ -58,4 +58,8 @@ public interface ClassCommService {
 	public String likeCntAjax(String classCommNo);
 	
 	public int increaseHit(String classCommNo);
+
+	public ClassCommVo modifyData(String cNo);
+
+	public int modify(ClassCommVo classVo);
 }
