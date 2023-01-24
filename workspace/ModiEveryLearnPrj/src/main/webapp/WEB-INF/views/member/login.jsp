@@ -56,7 +56,7 @@
                 
             </div>
 
-            <ul>
+<!--             <ul>
                 <li onclick="kakaoLogin();">
                   <a href="javascript:void(0)">
                       <span>카카오 로그인</span>
@@ -67,10 +67,10 @@
                       <span>카카오 로그아웃</span>
                   </a>
                 </li>
-            </ul>
+            </ul> -->
 
             
-            <script>
+<!--             <script>
             Kakao.init('83eaa8e14588c0d880e90900bad36a53'); //발급받은 키 중 javascript키를 사용해준다.
             console.log(Kakao.isInitialized()); // sdk초기화여부판단
             //카카오로그인
@@ -107,7 +107,7 @@
                   Kakao.Auth.setAccessToken(undefined)
                 }
               }  
-            </script>
+            </script> -->
 
             <div id="find">
                 <a href="http://127.0.0.1:8888/el/member/idFind">아이디 찾기</a> | <a href="http://127.0.0.1:8888/el/member/pwFind">비밀번호 찾기</a> | <a href="http://127.0.0.1:8888/el/member/join">회원가입</a>

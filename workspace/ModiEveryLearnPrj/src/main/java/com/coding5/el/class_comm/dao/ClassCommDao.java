@@ -54,5 +54,9 @@ public interface ClassCommDao {
 	
 	public ClassCommVo selectModifyData(SqlSessionTemplate sst, String cNo);
 	public int updateModify(ClassCommVo classVo, SqlSessionTemplate sst);
+	
+	public ClassCommVo selectQnaComment(SqlSessionTemplate sst, ClassCommVo classCommVo);
+	//스터디 댓글 카운트
+	public String selectCommentCount(SqlSessionTemplate sst, ClassCommVo classCommVo);
 
 }

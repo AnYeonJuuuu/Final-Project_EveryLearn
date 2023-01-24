@@ -320,5 +320,17 @@
 		, CONTENT = #{content}
 		WHERE NO = ${no}
 	</update>
+	
+	<select id="selectQnaComment" resultType="com.coding5.el.class_comm.vo.ClassCommVo">
+	SELECT COUNT(*) COMMENT_COUNT
+	FROM COMM_COMMENT
+	WHERE COMM_NO = ${classCommNo}
+	</select>
+	
+	<select id="selectCommentCount" resultType="string">
+	SELECT COUNT(*) COMMENT_COUNT
+	FROM COMM_COMMENT
+	WHERE COMM_NO = ${classCommNo}
+	</select>
 
 </mapper>

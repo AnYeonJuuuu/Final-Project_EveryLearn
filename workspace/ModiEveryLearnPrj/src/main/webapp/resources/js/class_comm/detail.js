@@ -58,7 +58,7 @@ function commentWrite(){
           
         }
         , error : function (params) {
-            alert('댓글에이젝스에러');
+            alert('로그인 후 이용해주세요.');
         }
     });
 

@@ -1,5 +1,6 @@
 package com.coding5.el.class_comm.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import com.coding5.el.class_comm.dao.ClassCommDao;
 import com.coding5.el.class_comm.vo.ClassCommVo;
 import com.coding5.el.class_comm.vo.CommentVo;
 import com.coding5.el.common.page.PageVo;
+import com.coding5.el.member.vo.ClassListVo;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -173,6 +175,30 @@ public class ClassCommServiceImpl implements ClassCommService{
 	@Override
 	public int modify(ClassCommVo classVo) {
 		return dao.updateModify(classVo,sst);
+	}
+
+	//질답 댓글 카운트
+	@Override
+	public List<ClassCommVo> qnaCommentList(List<ClassCommVo> qnaList) {
+		 List<ClassCommVo> qnaCommentList = new ArrayList<ClassCommVo>();
+		for(int i = 0; i<qnaList.size(); i++) {
+			ClassCommVo commentCount = new ClassCommVo();
+			commentCount =  dao.selectQnaComment(sst, qnaList.get(i));
+			qnaCommentList.add(commentCount);
+		}
+		
+		return qnaCommentList;
+	}
+
+	@Override
+	public List<String> studyCommentCountList(List<ClassCommVo> studyList) {
+		 List<String> studyCommentCountList = new ArrayList<String>();
+		for(int i = 0; i<studyList.size(); i++) {
+			String commentCount = new String();
+			commentCount =  dao.selectCommentCount(sst, studyList.get(i));
+			studyCommentCountList.add(commentCount);
+		}
+		return studyCommentCountList;
 	}
 	
 }//서비스레이어

@@ -62,4 +62,8 @@ public interface ClassCommService {
 	public ClassCommVo modifyData(String cNo);
 
 	public int modify(ClassCommVo classVo);
+
+	public List<ClassCommVo> qnaCommentList(List<ClassCommVo> qnaList);
+
+	public List<String> studyCommentCountList(List<ClassCommVo> studyList);
 }

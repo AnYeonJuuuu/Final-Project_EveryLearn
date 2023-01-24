@@ -54,7 +54,7 @@
 
 				<c:if test="${loginMember == null}">
 					<div class="member">
-						<a href="/el/member/login" class="login">Login</a> <a href="/el/member/join" class="join">Join</a>
+						<a href="/el/member/login" class="login">LOGIN</a> <a href="/el/member/join" class="join">JOIN!</a>
 					</div>
 				</c:if>
 

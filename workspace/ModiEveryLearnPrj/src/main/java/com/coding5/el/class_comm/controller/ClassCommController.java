@@ -131,9 +131,18 @@ public class ClassCommController {
 	public String qna(Model model) {
 		
 		List<ClassCommVo> qnaList = ccs.qnaList();
+		
+		//댓글 갯수 카운트
+		List<ClassCommVo> qnaCommentList = ccs.qnaCommentList(qnaList);
+		log.info("qnaCommentList :: " + qnaCommentList);
+		model.addAttribute("qnaCommentList", qnaCommentList);
+		
+		
+		
 		log.info("큐앤에이 리스트" + qnaList);
 		model.addAttribute("qnaList", qnaList);
-//		log.info("qnaList" + qnaList);
+		
+		
 		
 		if(qnaList == null) {
 			return "common/error";
@@ -311,9 +320,14 @@ public class ClassCommController {
 		
 		
 		List<ClassCommVo> studyList = ccs.studyList( pv, search);
-		log.info("리스트" + studyList);
+		
+		List<String> studyCommentCountList = ccs.studyCommentCountList(studyList);
+		
+		
+		log.info("studyCommentCountList리스트" + studyCommentCountList);
 		log.info("pv :: " + pv);
 		model.addAttribute("studyList", studyList);
+		model.addAttribute("studyCommentCountList", studyCommentCountList);
 		model.addAttribute("pv", pv);
 		model.addAttribute("search", search);
 		

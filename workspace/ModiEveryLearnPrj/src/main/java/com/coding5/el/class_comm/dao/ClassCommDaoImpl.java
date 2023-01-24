@@ -154,6 +154,18 @@ public class ClassCommDaoImpl implements ClassCommDao{
 		return sst.update("classCommMapper.updateModify", classVo);
 		
 	}
+
+	@Override
+	public ClassCommVo selectQnaComment(SqlSessionTemplate sst, ClassCommVo classCommVo) {
+		return sst.selectOne("classCommMapper.selectQnaComment", classCommVo);
+	}
+
+	@Override
+	public String selectCommentCount(SqlSessionTemplate sst, ClassCommVo classCommVo) {
+		return sst.selectOne("classCommMapper.selectCommentCount", classCommVo);
+	}
+
+
 	
 	
 	

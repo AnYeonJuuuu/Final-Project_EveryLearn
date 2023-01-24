@@ -37,9 +37,9 @@
             <div id="btn-write" class="btn-write">
                 <button class="btn-write" type="button" onclick="location.href = '/el/class/write';">글쓰기</button>
             </div>
-                
+
             <div id="question-wrap">
-            	<c:forEach items="${qnaList}" var="qna">
+            	<c:forEach items="${qnaList}" var="qna" varStatus="status">
             	
                 <!-- 질문 div 시작 -->
 	                <div>
@@ -50,9 +50,11 @@
 	                        </div>
 	                        <div id="q-writer">${qna.writer}</div>
 	                        <div id="q-content"><p>${qna.content}</p></div>
+            	
 	                        <div id="btn-adiv">
-                                <i style="font-size: large;" class="fa-regular fa-comment"> 2</i>
+                                <i style="font-size: large;" class="fa-regular fa-comment"> ${qnaCommentList[status.index].commentCount}</i>
 	                        </div>
+            	
 	                    </div>
 	                    </a>
 	                </div>

@@ -52,7 +52,7 @@
                 </ul>
             </div>
             <div id="study-wrap">
-               <c:forEach items="${studyList}" var="study">
+               <c:forEach items="${studyList}" var="study" varStatus="status">
                 <div id="study-context">
                     <div id="comm-study" onclick="location.href='/el/class/detail?classCommNo=${study.classCommNo}&lc=${loginMember.memberNo}'">
                         <div class="study-write" id="study-title" onclick="location.href='/el/class/detail?classCommNo=}&lc=${loginMember.memberNo}'">${study.title}</div>
@@ -71,7 +71,7 @@
                                     <i class="fa-regular fa-eye"> ${study.hit}</i>
                                 </div>
                                 <div>
-                                    <i class="fa-regular fa-comment"> 2</i>
+                                    <i class="fa-regular fa-comment"> ${studyCommentCountList[status.index]}</i>
                                 </div>
 
                         </div>

@@ -24,6 +24,7 @@ public class ClassCommVo {
 	private String likeCnt;
 	private String likeupCheck;
 	private String no;
+	private String commentCount;
 	
 
 	

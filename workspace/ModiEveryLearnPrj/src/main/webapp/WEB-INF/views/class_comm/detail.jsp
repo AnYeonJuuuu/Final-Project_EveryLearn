@@ -95,14 +95,14 @@
                             <div id="like-cnt">${detailVo.likeCnt}</div>
                         </div>
                     </div>
-                    <div id="comment-top">댓글(3)</div>
+                    <!-- <div id="comment-top">댓글(3)</div> -->
                     <div style=" margin: 10px 10px;"></div>
                     <div id="comment-main">
                     <c:forEach items="${commentList}" var="comment">
                         <!-- 댓글반복문 -->
                         <div id="comment-wrap">
-                            <img onclick="new_window();" style="height: 15px; width: 18px; margin-bottom: 4px; margin-left: 5px;"
-                                src="/el/resources/img/class-comm/warning2.png" alt="">
+<!--                             <img onclick="new_window();" style="height: 15px; width: 18px; margin-bottom: 4px; margin-left: 5px;"
+                                src="/el/resources/img/class-comm/warning2.png" alt=""> -->
                             <div id="writer">
                                 ${comment.comWriter}
                             </div>
